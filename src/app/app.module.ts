@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
+import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 
 
 
@@ -16,7 +17,8 @@ import { DataTableModule } from 'primeng/components/datatable/datatable';
     BrowserModule,
     InputTextModule,
     ButtonModule,
-    DataTableModule
+    DataTableModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
