@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -44,7 +45,8 @@ import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
     SelectButtonModule,
     DropdownModule,
     CurrencyMaskModule,
-    InputMaskModule
+    InputMaskModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
