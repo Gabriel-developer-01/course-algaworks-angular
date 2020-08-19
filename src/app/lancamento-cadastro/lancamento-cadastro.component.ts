@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -22,5 +23,9 @@ export class LancamentoCadastroComponent {
     { label: 'Sebastião Souza', value: 2 },
     { label: 'Maria Abadia', value: 3 }
   ];
+
+  salvar(form: NgForm){
+    console.log(form.value);
+  }
 
 }
