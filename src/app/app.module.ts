@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasGridComponent } from './pessoas/pessoas-grid/pessoas-grid.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
@@ -20,6 +19,8 @@ import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
+import { CoreModule } from './navbar/core.module';
+
 
 
 
@@ -27,7 +28,6 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     PessoasPesquisaComponent,
     PessoaCadastroComponent,
     MessageComponent,
@@ -39,6 +39,7 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
     FormsModule,
 
     LancamentosModule,
+    CoreModule,
 
     InputTextModule,
     ButtonModule,
