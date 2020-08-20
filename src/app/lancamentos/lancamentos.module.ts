@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { SharedModule } from 'app/shared/shared.module';
+
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
@@ -29,7 +31,9 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+
+    SharedModule
   ],
   declarations: [
     LancamentoCadastroComponent,
