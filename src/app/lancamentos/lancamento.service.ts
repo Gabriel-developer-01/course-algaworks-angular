@@ -4,10 +4,12 @@ import * as moment from 'moment';
 
 //criando uma interface para tornar obrigatório a descrição como parâmetro quando o método pesquisar for
 //chamado ao clicar no botão na view.
-export interface LancamentoFiltro{
+export class LancamentoFiltro{
   descricao: string;
   dataVencimentoDe: Date;
   dataVencimentoAte: Date;
+  pagina = 0;
+  intensPorPagina = 5;
 }
 
 @Injectable()
@@ -20,7 +22,11 @@ export class LancamentoService {
   pesquisar(filtro: LancamentoFiltro): Promise<any>{
     const params = new URLSearchParams
     const headers = new Headers
+
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    params.set('page', filtro.pagina.toString());
+    params.set('size', filtro.intensPorPagina.toString());
 
     if(filtro.descricao){
       params.set('descricao', filtro.descricao);
@@ -35,6 +41,16 @@ export class LancamentoService {
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { headers: headers, search: params })
     .toPromise()
-    .then(response => response.json().content);
+    .then(response => {
+      const responseJson = response.json();
+      const lancamentos = responseJson.content;
+
+      const resultado = {
+        lancamentos: lancamentos,
+        total: responseJson.totalElements
+      }
+
+      return resultado;
+    });
   }
 }
