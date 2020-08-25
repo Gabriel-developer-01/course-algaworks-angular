@@ -9,7 +9,7 @@ export class LancamentoFiltro{
   dataVencimentoDe: Date;
   dataVencimentoAte: Date;
   pagina = 0;
-  intensPorPagina = 5;
+  itensPorPagina = 5;
 }
 
 @Injectable()
@@ -25,8 +25,9 @@ export class LancamentoService {
 
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
+    //preciso converter para string pra ser aceito como parametro
     params.set('page', filtro.pagina.toString());
-    params.set('size', filtro.intensPorPagina.toString());
+    params.set('size', filtro.itensPorPagina.toString());
 
     if(filtro.descricao){
       params.set('descricao', filtro.descricao);
