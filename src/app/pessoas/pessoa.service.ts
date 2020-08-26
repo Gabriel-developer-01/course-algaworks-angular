@@ -4,7 +4,7 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 export class PessoaFiltro {
   nome: string;
   pagina = 0;
-  itensPorPagina = 5;
+  itensPorPagina = 2;
 }
 
 @Injectable()
@@ -15,7 +15,7 @@ export class PessoaService {
   constructor(private http: Http) { }
 
   pesquisar(filtro: PessoaFiltro) : Promise<any> {
-   const headers = new Headers;
+   const headers = new Headers();
    const params = new URLSearchParams;
 
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
@@ -27,7 +27,7 @@ export class PessoaService {
       params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.pessoaUrl}`, {headers: headers, search: params})
+    return this.http.get(this.pessoaUrl, {headers: headers, search: params})
     .toPromise()
     .then(response => {
       const responseJson = response.json();
@@ -41,4 +41,15 @@ export class PessoaService {
       return resultado;
     });
   }
+
+  listarTodas(): Promise<any> {
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get(this.pessoaUrl, {headers: headers})
+    .toPromise()
+    .then(response => response.json().content);
+  }
+
 }
