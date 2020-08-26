@@ -4,7 +4,7 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 export class PessoaFiltro {
   nome: string;
   pagina = 0;
-  itensPorPagina = 2;
+  itensPorPagina = 4;
 }
 
 @Injectable()
@@ -15,8 +15,8 @@ export class PessoaService {
   constructor(private http: Http) { }
 
   pesquisar(filtro: PessoaFiltro) : Promise<any> {
-   const headers = new Headers();
-   const params = new URLSearchParams;
+    const headers = new Headers();
+    const params = new URLSearchParams;
 
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
