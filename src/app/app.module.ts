@@ -9,6 +9,7 @@ import { CoreModule } from './navbar/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { HttpModule } from '@angular/http';
 import { LancamentoService } from './lancamentos/lancamento.service';
+import { PessoaService } from './pessoas/pessoa.service';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { LancamentoService } from './lancamentos/lancamento.service';
     CoreModule,
     PessoasModule
   ],
-  providers: [LancamentoService],
+  providers: [LancamentoService,PessoaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
