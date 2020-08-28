@@ -62,15 +62,16 @@ export class PessoasPesquisaComponent implements OnInit {
   }
 
   mudarStatus(pessoa: any){
+    console.log('clicou',pessoa);
 
+    //se a pessoa estiver ativa a variável 'novoStatus' guarda o valor inativo.
     let novoStatus = !pessoa.ativo;
     pessoa.ativo ? pessoa.ativo = false : pessoa.ativo = true;
 
-    this.pessoaService.mudarStatus(pessoa.codigo, novoStatus)
+    this.pessoaService.mudarStatus(pessoa.codigo, pessoa.ativo)
     .then(() => {
       const acao = novoStatus ? 'ativada' : 'desativada'
 
-      pessoa.ativa = novoStatus;
       this.toasty.success(`Pessoa ${acao} com sucesso!`);
     })
     .catch(erro => this.erroHandler.handle(erro))
