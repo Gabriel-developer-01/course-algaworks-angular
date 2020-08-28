@@ -1,22 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CategoriaService } from 'app/categorias/categoria.service';
+import { ErrorHandlerService } from 'app/core/error-handler.service';
 
 @Component({
   selector: 'app-lancamento-cadastro',
   templateUrl: './lancamento-cadastro.component.html',
   styleUrls: ['./lancamento-cadastro.component.css']
 })
-export class LancamentoCadastroComponent {
+export class LancamentoCadastroComponent implements OnInit{
+
+  constructor(
+    private categoriaService: CategoriaService,
+    private errorHandler: ErrorHandlerService
+    ){}
+
+  ngOnInit(): void {
+    this.carregarCategorias();
+  }
 
   tipos = [
     { label: 'Receita', value:'RECEITA' },
     { label: "Despesa", value: 'DESPESA' }
   ];
 
-  categorias = [
-    { label: 'Alimentação', value: 1 },
-    { label: 'Transporte', value: 2 }
-  ];
+  categorias = [];
 
   pessoas = [
     { label: 'João da Silva', value: 1 },
@@ -26,6 +34,14 @@ export class LancamentoCadastroComponent {
 
   salvar(form: NgForm){
     console.log(form.value);
+  }
+
+  carregarCategorias(){
+    return this.categoriaService.listarTodas()
+    .then(categorias => {
+      this.categorias = categorias.map(c => ({label: c.nome, value: c.codigo}))
+    })
+    .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

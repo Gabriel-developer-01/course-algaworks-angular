@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 @Injectable()
 export class CategoriaService {
@@ -10,9 +10,9 @@ export class CategoriaService {
 
   listarTodas(): Promise<any> {
     const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.http.get(this.categoriasUrl)
+    return this.http.get(this.categoriasUrl, {headers: headers})
     .toPromise()
     .then(response => response.json());
   }
