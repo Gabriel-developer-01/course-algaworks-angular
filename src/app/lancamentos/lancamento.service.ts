@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import * as moment from 'moment';
+import { Lancamento } from 'app/core/model';
 
 //criando uma interface para tornar obrigatório a descrição como parâmetro quando o método pesquisar for
 //chamado ao clicar no botão na view.
@@ -62,5 +63,16 @@ export class LancamentoService {
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers: headers })
     .toPromise()
     .then(() => null);
+  }
+
+  adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    const headers = new Headers
+
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento), {headers: headers})
+    .toPromise()
+    .then(response => response.json().content);
   }
 }
