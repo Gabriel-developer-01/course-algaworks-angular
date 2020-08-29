@@ -49,7 +49,7 @@ export class PessoaService {
 
     return this.http.get(this.pessoaUrl, {headers: headers})
     .toPromise()
-    .then(response => response.json().content);
+    .then(response => response.json().content)
   }
 
   excluir(codigo: number): Promise<void> {
