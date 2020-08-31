@@ -7,7 +7,7 @@ import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { Lancamento } from 'app/core/model';
 import { LancamentoService } from '../lancamento.service';
 import { ToastyService } from 'ng2-toasty';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 
@@ -25,7 +25,8 @@ export class LancamentoCadastroComponent implements OnInit{
     private lancamentoService: LancamentoService,
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ){}
 
   ngOnInit() {
@@ -62,10 +63,11 @@ export class LancamentoCadastroComponent implements OnInit{
 
   adicionarLancamento(form: FormControl){
     this.lancamentoService.adicionar(this.lancamento)
-    .then(() => {
+    .then(lancamentoAdicionado => {
       this.toasty.success('Lançamento adicionado com suceesso!!');
-      form.reset();
-      this.lancamento = new Lancamento();
+      // form.reset();
+     // this.lancamento = new Lancamento();
+      this.router.navigate(['/lancamentos', lancamentoAdicionado.codigo]);
     })
     .catch(erro => this.errorHandler.handle(erro));
 
@@ -88,10 +90,10 @@ export class LancamentoCadastroComponent implements OnInit{
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  private converterStringsParaDatas(lancamentos: Lancamento[]) {
+  /*private converterStringsParaDatas(lancamentos: Lancamento[]) {
     moment().format('ddMMYYYY');
     moment().format()
-  }
+  }*/
 
   carregarLancamento(codigo: number){
     this.lancamentoService.buscarPorCodigo(codigo)
@@ -117,4 +119,13 @@ export class LancamentoCadastroComponent implements OnInit{
     .catch(erro => this.errorHandler.handle(erro));
   }
 
+  novo(form: FormControl){
+    form.reset();
+
+    setTimeout(function(){
+      this.lancamento = new Lancamento();
+    }.bind(this), 1);
+
+    this.router.navigate(['/lancamentos/novo']);
+  }
 }
