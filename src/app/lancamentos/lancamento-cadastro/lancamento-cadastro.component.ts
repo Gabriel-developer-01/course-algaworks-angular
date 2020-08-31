@@ -71,13 +71,13 @@ export class LancamentoCadastroComponent implements OnInit{
 
   }
 
-  buscarPorCodigo(codigo: number) {
+  /*buscarPorCodigo(codigo: number) {
     return this.lancamentoService.buscarPorCodigo(codigo)
       .then(result => {
         this.lancamento = result;
       });
 
-  }
+  }*/
 
   atualizarLancamento(form: FormControl) {
     this.lancamentoService.atualizar(this.lancamento)
@@ -94,7 +94,7 @@ export class LancamentoCadastroComponent implements OnInit{
   }
 
   carregarLancamento(codigo: number){
-    return this.lancamentoService.buscarPorCodigo(codigo)
+    this.lancamentoService.buscarPorCodigo(codigo)
     .then(lancamento => {
       this.lancamento = lancamento;
     })
