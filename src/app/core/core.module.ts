@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ConfirmationService } from 'primeng/components/common/api';
+import { ErrorHandlerService } from './error-handler.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
-import { NavbarComponent } from './navbar.component';
-import { ErrorHandlerService } from '../error-handler.service';
 import { LancamentoService } from 'app/lancamentos/lancamento.service';
 import { PessoaService } from 'app/pessoas/pessoa.service';
 import { CategoriaService } from 'app/categorias/categoria.service';
 import { RouterModule } from '@angular/router';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { RouterModule } from '@angular/router';
     ToastyModule.forRoot(),
     ConfirmDialogModule,
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [
     NavbarComponent,
     ToastyModule,

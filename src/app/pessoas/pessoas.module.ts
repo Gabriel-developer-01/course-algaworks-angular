@@ -29,6 +29,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     SharedModule
   ],
   declarations: [PessoaCadastroComponent, PessoasPesquisaComponent],
-  exports: [PessoaCadastroComponent, PessoasPesquisaComponent]
+  exports: []
 })
 export class PessoasModule { }
