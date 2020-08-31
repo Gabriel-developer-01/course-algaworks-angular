@@ -52,7 +52,15 @@ export class LancamentoCadastroComponent implements OnInit{
     return Boolean(this.lancamento.codigo)
   }
 
-  salvar(form: FormControl){
+  salvar(form: FormControl) {
+    if (this.editando){
+      this.atualizarLancamento(form);
+    }else{
+      this.adicionarLancamento(form);
+    }
+  }
+
+  adicionarLancamento(form: FormControl){
     this.lancamentoService.adicionar(this.lancamento)
     .then(() => {
       this.toasty.success('Lançamento adicionado com suceesso!!');
@@ -71,14 +79,13 @@ export class LancamentoCadastroComponent implements OnInit{
 
   }
 
-  atualizar(form: FormControl) {
+  atualizarLancamento(form: FormControl) {
     this.lancamentoService.atualizar(this.lancamento)
-      .then(() => {
+      .then(lancamento => {
+        this.lancamento = lancamento;
         this.toasty.success('Lançamento alterado com sucesso!!! ');
-
-        form.reset();
-        this.lancamento = new Lancamento();
       })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   private converterStringsParaDatas(lancamentos: Lancamento[]) {
