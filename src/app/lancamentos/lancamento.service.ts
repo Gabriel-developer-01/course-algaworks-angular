@@ -90,7 +90,7 @@ export class LancamentoService {
       this.converterStringParaDatas([lancamentoAlterado]);
 
       return lancamento;
-    })
+    });
   }
 
   buscarPorCodigo(codigo: number): Promise<Lancamento>{
@@ -99,7 +99,7 @@ export class LancamentoService {
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     headers.append('Content-Type', 'application/json');
 
-    return this.http.put(`${this.lancamentosUrl}/${codigo}`, { headers: headers })
+    return this.http.get(`${this.lancamentosUrl}/${codigo}`, { headers: headers })
     .toPromise()
     .then(response => {
       const lancamento = response.json() as Lancamento;
