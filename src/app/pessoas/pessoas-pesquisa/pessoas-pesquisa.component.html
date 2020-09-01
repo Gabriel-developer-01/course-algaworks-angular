@@ -34,9 +34,10 @@
             </ng-template>
           </p-column>
           <p-column styleClass="col-acoes">
-            <ng-template let-lanc="rowData" pTemplate="body">
-              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(lanc)"></button>
+            <ng-template let-pessoa="rowData" pTemplate="body">
+              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+              [routerLink]="['/pessoas', pessoa.codigo]"></a>
+              <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(pessoa)"></button>
             </ng-template>
           </p-column>
         </p-dataTable>
@@ -45,7 +46,7 @@
   </div>
 
   <div class="ui-g-12">
-    <button pButton type="submit" label="Nova Pessoa"></button>
+    <button pButton type="submit" label="Nova Pessoa" routerLink="/pessoas/novo"></button>
   </div>
 
 </div>
